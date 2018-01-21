@@ -40,7 +40,7 @@ class Filmes extends CI_Controller {
 				);
 				echo "<script>alert('Mensagem');</script>";
 				$this->session->set_userdata($session_data);
-				redirect(base_url().'Filmes/enter');
+				redirect(base_url().'Filmes/index');
 			}else{
 					$this->session->set_flashdata('error','Usuario ou senha invalida');
 					redirect(base_url().'Filmes/login');
@@ -53,6 +53,13 @@ class Filmes extends CI_Controller {
 		public function enter(){
 			if($this->session->userdata('username')!=''){
 				$this->load->view('enter');
+			}else{
+				redirect(base_url().'Filmes/login');
+			}
+		}
+		public function perfil(){
+			if($this->session->userdata('username')!=''){
+				$this->load->view('perfil');
 			}else{
 				redirect(base_url().'Filmes/login');
 			}
@@ -70,10 +77,10 @@ class Filmes extends CI_Controller {
 		$this->load->model('produtos_model', 'cinema');	
 		$this->load->view('login');
 	}
-	public function genero()
+	public function contato()
 	{				
 		$this->load->model('produtos_model', 'cinema');	
-		$this->load->view('genero');
+		$this->load->view('contato');
 	}
 	
 	public function lista_filmes()
@@ -81,9 +88,14 @@ class Filmes extends CI_Controller {
 		$this->load->model('produtos_model', 'cinema');
 		$data['cinema'] = $this->cinema->getFilme();	
 		$this->load->view('todosfilmes',$data);
-		
-
 	}
+		public function lista_produtos()
+	{				
+		$this->load->model('produtos_model', 'cinema');
+		$data['cinema'] = $this->cinema->getProduto();	
+		$this->load->view('todosprodutos',$data);
+	}
+	
 	public function cliente()
 	{				
 		$this->load->model('produtos_model', 'cinema');	
@@ -131,7 +143,7 @@ class Filmes extends CI_Controller {
 							
 				
 					$this->cinema->addFilme($dados);
-					redirect("/");		
+					redirect(base_url().'Filmes/lista_filmes');		
 		}
 		if($this->input->post('valor')=="2"){		
 				//Carrega o Model Produtos				
@@ -198,7 +210,8 @@ class Filmes extends CI_Controller {
 				$dados['qtd'] = $this->input->post('qtd');		
 							
 					$this->cinema->addProduto($dados);
-					echo ("Cadastro Efetuado com sucesso");							
+					redirect(base_url().'Filmes/lista_produtos');
+
 		}		
 	}
   public function pesquisa_id($id) {

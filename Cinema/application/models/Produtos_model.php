@@ -8,6 +8,11 @@ class Produtos_model extends CI_Model
         $query = $this->db->get("filme");
         return $query->result();
     }
+	    public function getProduto()
+    {                                 
+        $query = $this->db->get("produto");
+        return $query->result();
+    }
 
        	 
 		 //Adiciona um novo produtos na tabela produtos

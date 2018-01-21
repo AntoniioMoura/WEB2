@@ -46,7 +46,7 @@
                 
         <h1>Novo Filme</h1>   
         <ol class="breadcrumb">
-              <li><a href="/">Inicio</a></li>          
+              <li><a href="http://localhost/cinema/index.php/Filmes/index">Inicio</a></li>          
               <li class="active">Novo Filme</li>
         </ol>      
 

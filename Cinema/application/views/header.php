@@ -19,7 +19,7 @@
 
   <body background="/cinema/bootstrap/image/fd-site.jpg">   
   <div class="container">
-  <div background-color="blue" class="row">
+  <div class="row">
   <br>
           <div class="col-md-12">
 		  <img src="/cinema/bootstrap/image/topo.png" class="img-responsive">
@@ -58,42 +58,34 @@
 						<a href="http://localhost/cinema/index.php/Filmes/lista_filmes">
 							Filmes
 						</a>
-					</li>
-					
-						<li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gênero <span class="caret"></span></a>
-          <ul class="dropdown-menu nav navbar-nav teste">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-					
+					</li>				
 					<li>
-						<a href="http://localhost/cinema/index.php/Filmes/add">
+						<a href="http://localhost/cinema/index.php/Filmes/lista_produtos">
 							Produtos
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="http://localhost/cinema/index.php/Filmes/contato">
 							Contatos
 						</a>
 					</li>
 					<li>
-						<a href="http://localhost/cinema/index.php/Filmes/login">
-							Efetuar Login
-						</a>
+						<?php
+								if($this->session->userdata('username')==''){
+									echo '<a href="'.base_url().'Filmes/login">Efetuar Login'; 
+								}else{
+									echo '<a href="'.base_url().'Filmes/enter">Logout'; 
+								}
+									
+							?>
+							</a>
 					</li>
 						<li>
 							<?php
 								if($this->session->userdata('username')==''){
 									echo '<a href="'.base_url().'Filmes/login">Visitante'; 
 								}else{
-									echo '<a href="'.base_url().'Filmes/enter"> '.$this->session->userdata('username');
+									echo '<a href="'.base_url().'Filmes/perfil"> '.$this->session->userdata('username');
 								}
 									
 							?>
